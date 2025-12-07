@@ -9,7 +9,18 @@ dotenv.config();
 const app = express();
 
 // Middleware
-app.use(cors());
+// app.use(cors());
+// app.use(express.json());
+app.use(cors({
+  origin: [
+    'https://sparkling-pony-c70e68.netlify.app',  // Your Netlify URL
+    'http://localhost:5173'  // For local development
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
+
 app.use(express.json());
 
 // Routes
